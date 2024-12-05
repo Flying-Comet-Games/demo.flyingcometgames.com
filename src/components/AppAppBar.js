@@ -12,7 +12,7 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Sitemark from './SitemarkIcon';
-import ColorModeIconDropdown from '../../shared-theme/ColorModeIconDropdown';
+import ColorModeIconDropdown from './ColorModeIconDropdown';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -33,7 +33,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
 
-  const toggleDrawer = (newOpen: boolean) => () => {
+  const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 

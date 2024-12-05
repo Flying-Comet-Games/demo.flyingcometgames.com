@@ -5,13 +5,14 @@ import AppAppBar from './components/AppAppBar';
 import MainContent from './components/MainContent';
 import Latest from './components/Latest';
 import Footer from './components/Footer';
-import AppTheme from '../shared-theme/AppTheme';
+import { ThemeProvider } from "@mui/material/styles";
+import theme from './theme';
 
-export default function Blog(props: { disableCustomTheme?: boolean }) {
+export  default function Blog1(props) {
   return (
-    <AppTheme {...props}>
+    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme />
-
       <AppAppBar />
       <Container
         maxWidth="lg"
@@ -22,6 +23,19 @@ export default function Blog(props: { disableCustomTheme?: boolean }) {
         <Latest />
       </Container>
       <Footer />
-    </AppTheme>
+    </ThemeProvider>
+    </>
   );
+}
+
+
+export  function Blog() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppAppBar />
+
+      <div>Hello World</div>
+    </ThemeProvider>
+);
 }
