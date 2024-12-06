@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seattle Wordy Verse - Flying Comet Games</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <style>
+        :root {
+            --fcg-primary: #db6551;
+            --fcg-background: #ebe2d1;
+            --correct-color: #b8c26c;
+            --present-color: #ecb061;
+            --absent-color: #010101;
+            --keyboard-bg: #d3d6da;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body, #root {
+            height: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--fcg-background);
+            color: black;
+        }
+
+        .game-container {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            padding: 8px;
+        }
+
+        .brand-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .game-header {
+            flex-shrink: 0;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: black;
+        }
+
+        .theme-container {
+            background-color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .game-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+            margin-bottom: auto;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .grid-row {
+            display: flex;
+            gap: 4px;
+        }
+
+        .grid-cell {
+            width: 52px;
+            height: 52px;
+            border: 2px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        @keyframes flipTile {
+            0% { transform: rotateX(0); }
+            50% { transform: rotateX(90deg); }
+            100% { transform: rotateX(0); }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            40% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .keyboard {
+            margin-top: auto;
+            padding-top: 12px;
+            padding-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            gap: 3px;
+            margin: 3px 0;
+        }
+
+        .key {
+            min-width: 32px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: 1.125em;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            text-transform: uppercase;
+            transition: transform 0.1s;
+            background-color: var(--keyboard-bg);
+        }
+
+        .key.wide {
+            min-width: 48px;
+            font-size: 11px;
+        }
+
+        .key:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-height: 600px) {
+            .brand-logo {
+                height: 30px;
+            }
+            .grid-cell {
+                width: 48px;
+                height: 48px;
+                font-size: 24px;
+            }
+            .key {
+                height: 45px;
+                min-width: 28px;
+            }
+            .key.wide {
+                min-width: 42px;
+            }
+            .theme-container {
+                padding: 8px;
+            }
+            h1 {
+                font-size: 24px;
+                margin-bottom: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        const KEYBOARD_KEYS = [
+            ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+            ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+            ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "⌫"],
+        ];
+
+        const DEMO_WORD = {
+            theme: "This music movement put Seattle on the cultural map in the early 1990s",
+            word: "GRUNGE",
+            characterCount: 6
+        };
+
+        function BrandHeader() {
+            return React.createElement('div', { className: 'brand-header' },
+                React.createElement('img', {
+                    src: 'https://flyingcometgames.com/assets/logo-vertical-old.svg',
+                    alt: 'Flying Comet Games',
+                    className: 'brand-logo'
+                })
+            );
+        }
+
+        function GameGrid({ wordData, guesses, currentGuess, getLetterBGColor }) {
+            return React.createElement('div', { className: 'game-grid' },
+                Array(5).fill().map((_, i) =>
+                    React.createElement('div', { key: i, className: 'grid-row' },
+                        Array(6).fill().map((_, j) => {
+                            const letter = i < guesses.length ? guesses[i][j] :
+                                         (i === guesses.length && j < currentGuess.length) ? currentGuess[j] : "";
+                            const [bgColor, textColor] = i < guesses.length ?
+                                getLetterBGColor(letter, j, true, i) : ["white", "black"];
+
+                            return React.createElement('div', {
+                                key: `${i}-${j}`,
+                                className: 'grid-cell',
+                                style: {
+                                    backgroundColor: bgColor,
+                                    color: textColor,
+                                    animation: i < guesses.length ?
+                                        `flipTile 0.6s ${j * 0.1}s` :
+                                        (letter ? 'popIn 0.1s ease-in-out' : 'none')
+                                }
+                            }, letter);
+                        })
+                    )
+                )
+            );
+        }
+
+        function Keyboard({ onGuessUpdate, currentGuess, wordData, gameOver, guesses }) {
+            const getKeyboardKeyColor = (key) => {
+                if (!wordData || !guesses.length) return ["var(--keyboard-bg)", "black"];
+
+                const keyUpperCase = key.toUpperCase();
+                const wordUpperCase = wordData.word.toUpperCase();
+                let correctPosition = false;
+                let keyFound = false;
+
+                const letterInWord = wordUpperCase.includes(keyUpperCase);
+
+                if (letterInWord) {
+                    for (let guess of guesses) {
+                        const guessArray = guess.toUpperCase().split("");
+                        for (let i = 0; i < guessArray.length; i++) {
+                            if (guessArray[i] === keyUpperCase) {
+                                keyFound = true;
+                                if (keyUpperCase === wordUpperCase[i]) {
+                                    correctPosition = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (correctPosition) break;
+                    }
+                }
+
+                if (correctPosition) return ["var(--correct-color)", "black"];
+                if (letterInWord && keyFound) return ["var(--present-color)", "white"];
+                return guesses.some(guess => guess.toUpperCase().includes(keyUpperCase)) ?
+                    ["var(--absent-color)", "white"] : ["var(--keyboard-bg)", "black"];
+            };
+
+            return React.createElement('div', { className: 'keyboard' },
+                KEYBOARD_KEYS.map((row, i) =>
+                    React.createElement('div', { key: i, className: 'keyboard-row' },
+                        row.map(key => {
+                            const [bgColor, textColor] = getKeyboardKeyColor(key);
+                            return React.createElement('div', {
+                                key,
+                                className: `key ${key.length > 1 ? 'wide' : ''}`,
+                                onClick: () => onGuessUpdate(key),
+                                style: {
+                                    backgroundColor: bgColor,
+                                    color: textColor
+                                }
+                            }, key);
+                        })
+                    )
+                )
+            );
+        }
+
+        function SeattleWordy() {
+            const [currentGuess, setCurrentGuess] = React.useState("");
+            const [guesses, setGuesses] = React.useState([]);
+            const [gameOver, setGameOver] = React.useState(false);
+
+            React.useEffect(() => {
+                const handleKeyPress = (e) => {
+                    if (gameOver) return;
+
+                    if (e.key === "Enter" && currentGuess.length === DEMO_WORD.word.length) {
+                        handleGuessUpdate("ENTER");
+                    } else if (e.key === "Backspace") {
+                        handleGuessUpdate("BACKSPACE");
+                    } else if (/^[A-Za-z]$/.test(e.key)) {
+                        handleGuessUpdate(e.key.toUpperCase());
+                    }
+                };
+
+                document.addEventListener("keydown", handleKeyPress);
+                return () => document.removeEventListener("keydown", handleKeyPress);
+            }, [currentGuess, gameOver]);
+
+            const getLetterBGColor = (letter, index, isGuessed, rowIndex) => {
+                if (!isGuessed) return ["white", "black"];
+
+                const guessUpperCase = letter.toUpperCase();
+                const targetWord = DEMO_WORD.word.toUpperCase();
+
+                if (guessUpperCase === targetWord[index]) {
+                    return ["var(--correct-color)", "black"];
+                }
+
+                if (targetWord.includes(guessUpperCase)) {
+                    return ["var(--present-color)", "white"];
+                }
+
+                return ["var(--absent-color)", "white"];
+            };
+
+            const handleGuessUpdate = (key) => {
+                if (gameOver) return;
+
+                if (key === "ENTER" && currentGuess.length === DEMO_WORD.word.length) {
+                    const newGuesses = [...guesses, currentGuess];
+                    setGuesses(newGuesses);
+
+                    if (currentGuess.toUpperCase() === DEMO_WORD.word.toUpperCase() ||
+                        newGuesses.length >= 5) {
+                        setGameOver(true);
+                    }
+
+                    setCurrentGuess("");
+                } else if (key === "BACKSPACE" || key === "⌫") {
+                    setCurrentGuess(prev => prev.slice(0, -1));
+                } else if (currentGuess.length < DEMO_WORD.word.length &&
+                          key.length === 1) {
+                    setCurrentGuess(prev => prev + key);
+                }
+            };
+
+            return React.createElement('div', { className: 'game-container' },
+                React.createElement(BrandHeader),
+                React.createElement('h1', null, 'Seattle Wordy Verse'),
+                React.createElement('div', { className: 'theme-container' },
+                    React.createElement('p', null, DEMO_WORD.theme)
+                ),
+                React.createElement(GameGrid, {
+                    wordData: DEMO_WORD,
+                    guesses,
+                    currentGuess,
+                    getLetterBGColor
+                }),
+                React.createElement(Keyboard, {
+                    onGuessUpdate: handleGuessUpdate,
+                    currentGuess,
+                    wordData: DEMO_WORD,
+                    gameOver,
+                    guesses
+                })
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(
+            React.createElement(SeattleWordy)
+        );
+    </script>
+</body>
+</html>
