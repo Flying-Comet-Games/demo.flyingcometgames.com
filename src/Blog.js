@@ -15,6 +15,7 @@ export default function Blog() {
         <CssBaseline enableColorScheme />
         {/* <AppAppBar /> */}
         <Container
+          width="100%"
           maxWidth="lg"
           component="main"
           sx={{ display: "flex", flexDirection: "column", mt: 5}}

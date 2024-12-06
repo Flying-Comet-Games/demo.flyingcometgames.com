@@ -96,7 +96,7 @@ const SyledCardContent = styled(CardContent)({
   display: "flex",
   flexDirection: "column",
   gap: 4,
-  padding: 16,
+  // padding: 16,
   flexGrow: 1,
   "&:last-child": {
     paddingBottom: 16,
@@ -159,27 +159,6 @@ Author.propTypes = {
   ).isRequired,
 };
 
-export function Search() {
-  return (
-    <FormControl sx={{ width: { xs: "100%", md: "25ch" } }} variant="outlined">
-      <OutlinedInput
-        size="small"
-        id="search"
-        placeholder="Search…"
-        sx={{ flexGrow: 1 }}
-        startAdornment={
-          <InputAdornment position="start" sx={{ color: "text.primary" }}>
-            <SearchRoundedIcon fontSize="small" />
-          </InputAdornment>
-        }
-        inputProps={{
-          "aria-label": "search",
-        }}
-      />
-    </FormControl>
-  );
-}
-
 export default function MainContent() {
   const [focusedCardIndex, setFocusedCardIndex] = React.useState(null);
 
@@ -202,25 +181,12 @@ export default function MainContent() {
           variant="h1"
           textAlign={"center"}
           gutterBottom
+          fontSize={{ xs: '3rem', sm: '6rem' }}
           style={{ fontFamily: `'UnifrakturMaguntia', serif` }}
         >
           Comet Chronicles
         </Typography>
       </div>
-      <Box
-        sx={{
-          display: { xs: "flex", sm: "none" },
-          flexDirection: "row",
-          gap: 1,
-          width: { xs: "100%", md: "fit-content" },
-          overflow: "auto",
-        }}
-      >
-        <Search />
-        <IconButton size="small" aria-label="RSS feed">
-          <RssFeedRoundedIcon />
-        </IconButton>
-      </Box>
       <Grid container spacing={2} columns={12}>
         <Grid size={{ xs: 12, md: 6 }}>
           <SyledCard
