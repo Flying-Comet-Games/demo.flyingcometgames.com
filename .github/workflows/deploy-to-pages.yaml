@@ -40,6 +40,8 @@ jobs:
       run: npm ci
 
     - name: Build the React app
+      env:
+        CI: false
       run: |
         npm run build
 
