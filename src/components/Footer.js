@@ -12,14 +12,14 @@ import Typography from '@mui/material/Typography';
 import FacebookIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/X';
-import SitemarkIcon from './SitemarkIcon';
+import FCGIcon from './FCGIcon';
 
 function Copyright() {
   return (
     <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
       {'Copyright © '}
-      <Link color="text.secondary" href="https://mui.com/">
-        Sitemark
+      <Link color="text.secondary" href="https://flyingcometgames.com/">
+        Flying Comet Games
       </Link>
       &nbsp;
       {new Date().getFullYear()}
@@ -30,7 +30,6 @@ function Copyright() {
 export default function Footer() {
   return (
     <React.Fragment>
-      <Divider />
       <Container
         sx={{
           display: 'flex',
@@ -41,7 +40,7 @@ export default function Footer() {
           textAlign: { sm: 'center', md: 'left' },
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
@@ -164,7 +163,7 @@ export default function Footer() {
               Contact
             </Link>
           </Box>
-        </Box>
+        </Box> */}
         <Box
           sx={{
             display: 'flex',
@@ -176,13 +175,13 @@ export default function Footer() {
           }}
         >
           <div>
-            <Link color="text.secondary" variant="body2" href="#">
+            <Link color="text.secondary" variant="body2" href="https://flyingcometgames.com/privacy">
               Privacy Policy
             </Link>
             <Typography sx={{ display: 'inline', mx: 0.5, opacity: 0.5 }}>
               &nbsp;•&nbsp;
             </Typography>
-            <Link color="text.secondary" variant="body2" href="#">
+            <Link color="text.secondary" variant="body2" href="https://flyingcometgames.com/terms">
               Terms of Service
             </Link>
             <Copyright />
@@ -196,16 +195,7 @@ export default function Footer() {
             <IconButton
               color="inherit"
               size="small"
-              href="https://github.com/mui"
-              aria-label="GitHub"
-              sx={{ alignSelf: 'center' }}
-            >
-              <FacebookIcon />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              size="small"
-              href="https://x.com/MaterialUI"
+              href="https://x.com/flyingcometgame"
               aria-label="X"
               sx={{ alignSelf: 'center' }}
             >
@@ -214,7 +204,7 @@ export default function Footer() {
             <IconButton
               color="inherit"
               size="small"
-              href="https://www.linkedin.com/company/mui/"
+              href="https://www.linkedin.com/company/105034486"
               aria-label="LinkedIn"
               sx={{ alignSelf: 'center' }}
             >
