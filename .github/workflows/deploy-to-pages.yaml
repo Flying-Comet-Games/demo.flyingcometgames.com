@@ -49,11 +49,11 @@ jobs:
       run: cp build/index.html build/404.html
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v3
       with:
         path: ./build
 
     - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v1  # Official GitHub action for Pages deployment
+      uses: actions/deploy-pages@v4
       with:
         publish_dir: ./build
