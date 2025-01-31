@@ -17,6 +17,8 @@ import { styled } from "@mui/material/styles";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import RssFeedRoundedIcon from "@mui/icons-material/RssFeedRounded";
 import GameEmbed from "./GameEmbedded";
+import { ContentCopy } from "@mui/icons-material";
+import { Button, Snackbar } from "@mui/material";
 
 const cardData = [
   {
@@ -159,6 +161,47 @@ Author.propTypes = {
   ).isRequired,
 };
 
+const EmbedCode = () => {
+  const [open, setOpen] = React.useState(false);
+  const iframeCode = `<iframe \n  src="https://demo.flyingcometgames.com/seattle-wordy-embed.html" \n  width="100%"\n  height="700px"\n  frameborder="0"\n  title="Wordy Verse Game"\n></iframe>`;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(iframeCode);
+    setOpen(true);
+  };
+
+  return (
+    <Box sx={{ p: 3, backgroundColor: "#f9f9f9", borderRadius: 2, boxShadow: 1, mb: 5 }}>
+      <Typography variant="h5" gutterBottom>
+        Test Wordy Verse on Your Site!
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        Copy the code below and paste it into your website to embed our demo game.
+      </Typography>
+      <Box sx={{ display: "flex", alignItems: "center", backgroundColor: "#fff", borderRadius: 1, border: "1px solid #ddd", p: 2, overflowX: "auto", mt: 2 }}>
+        <Typography component="pre" sx={{ flexGrow: 1, fontFamily: "monospace", fontSize: "0.875rem", whiteSpace: "pre-wrap", m: 0 }}>
+          {iframeCode}
+        </Typography>
+        <Button
+          onClick={handleCopy}
+          startIcon={<ContentCopy />}
+          variant="contained"
+          color="primary"
+          sx={{ ml: 2 }}
+        >
+          Copy Code
+        </Button>
+      </Box>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={() => setOpen(false)}
+        message="Embed code copied to clipboard!"
+      />
+    </Box>
+  );
+};
+
 export default function MainContent() {
   const [focusedCardIndex, setFocusedCardIndex] = React.useState(null);
 
@@ -181,12 +224,14 @@ export default function MainContent() {
           variant="h1"
           textAlign={"center"}
           gutterBottom
-          fontSize={{ xs: '3rem', sm: '6rem' }}
+          fontSize={{ xs: "3rem", sm: "6rem" }}
           style={{ fontFamily: `'UnifrakturMaguntia', serif` }}
         >
           Comet Chronicles
         </Typography>
       </div>
+
+      <EmbedCode />
       <Grid container spacing={2} columns={12}>
         <Grid size={{ xs: 12, md: 6 }}>
           <SyledCard
