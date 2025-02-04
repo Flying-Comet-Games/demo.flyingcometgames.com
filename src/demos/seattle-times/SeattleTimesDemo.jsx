@@ -20,7 +20,7 @@ const SeattleTimesDemo = () => {
       id: 0,
       title: "Wordy Verse",
       description: "Test your knowledge of this week's news",
-      image: "",
+      image: "assets/seattle-wordy-logo.png",
     },
     {
       id: 1,
@@ -125,7 +125,7 @@ const SeattleTimesDemo = () => {
               <Container maxWidth="lg">
                 <Typography variant="body1" sx={{ fontWeight: 600 }}>
                   This is a demo site for showing game functionality. This is
-                  not affiliated with The Seattle Times.
+                  NOT affiliated with The Seattle Times.
                 </Typography>
                 <Typography variant="body2">
                   <Link
@@ -228,7 +228,7 @@ const SeattleTimesDemo = () => {
                     alt={game.title}
                     sx={{
                       width: "100%",
-                      height: 200,
+                      height: 240,
                       objectFit: "cover",
                     }}
                   />
