@@ -12,6 +12,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { Menu, Search } from "lucide-react";
 import seattleTimesTheme from "./seattleTimesTheme";
+import { Link } from "@mui/material";
 
 const SeattleTimesDemo = () => {
   const games = [
@@ -19,8 +20,7 @@ const SeattleTimesDemo = () => {
       id: 0,
       title: "Wordy Verse",
       description: "Test your knowledge of this week's news",
-      image:
-        "",
+      image: "",
     },
     {
       id: 1,
@@ -126,6 +126,23 @@ const SeattleTimesDemo = () => {
                 <Typography variant="body1" sx={{ fontWeight: 600 }}>
                   This is a demo site for showing game functionality. This is
                   not affiliated with The Seattle Times.
+                </Typography>
+                <Typography variant="body2">
+                  <Link
+                    href="mailto:calli@flyingcometgames.com"
+                    underline="hover"
+                    component="a"
+                    color="inherit"
+                    sx={{
+                      typography: "subtitle2",
+                      textDecoration: "none",
+                      "&:hover": {
+                        textDecoration: "underline",
+                      },
+                    }}
+                  >
+                    Contact Us
+                  </Link>
                 </Typography>
               </Container>
             </Box>
