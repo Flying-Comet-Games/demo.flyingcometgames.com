@@ -18,8 +18,8 @@ const SeattleTimesDemo = () => {
   const games = [
     {
       id: 0,
-      title: "Wordy Verse",
-      description: "Test your knowledge of this week's news",
+      title: "The Daily Wordy",
+      description: "Guess the 5 letter word of the day",
       image: "assets/seattle-wordy-logo.png",
     },
     {
