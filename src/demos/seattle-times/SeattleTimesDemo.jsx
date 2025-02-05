@@ -13,6 +13,7 @@ import Toolbar from "@mui/material/Toolbar";
 import { Menu, Search } from "lucide-react";
 import seattleTimesTheme from "./seattleTimesTheme";
 import { Link } from "@mui/material";
+import DisclaimerBanner from "../../components/DisclaimerBanner";
 
 const SeattleTimesDemo = () => {
   const games = [
@@ -21,6 +22,7 @@ const SeattleTimesDemo = () => {
       title: "The Daily Wordy",
       description: "Guess the 5 letter word of the day",
       image: "assets/seattle-wordy-logo.png",
+      link: "/seattle-times/wordy",
     },
     {
       id: 1,
@@ -112,43 +114,8 @@ const SeattleTimesDemo = () => {
               </Box>
             </Toolbar>
 
-            {/* Disclaimer Banner */}
-            <Box
-              sx={{
-                bgcolor: "#ffeb3b",
-                py: 1.5,
-                textAlign: "center",
-                borderBottom: 1,
-                borderColor: "divider",
-              }}
-            >
-              <Container maxWidth="lg">
-                <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                  This is a demo site for showing game functionality. This is
-                  NOT affiliated with The Seattle Times.
-                </Typography>
-                <Typography variant="body2">
-                  <Link
-                    href="mailto:calli@flyingcometgames.com"
-                    underline="hover"
-                    component="a"
-                    color="inherit"
-                    sx={{
-                      typography: "subtitle2",
-                      textDecoration: "none",
-                      "&:hover": {
-                        textDecoration: "underline",
-                      },
-                    }}
-                  >
-                    Contact Us
-                  </Link>
-                </Typography>
-              </Container>
-            </Box>
-
             {/* Main Navigation */}
-            <Box sx={{ py: 1, borderTop: 1, borderColor: "divider" }}>
+            {/* <Box sx={{ py: 1, borderTop: 1, borderColor: "divider" }}>
               <Box
                 sx={{
                   justifyContent: "center",
@@ -179,7 +146,7 @@ const SeattleTimesDemo = () => {
                   </Typography>
                 ))}
               </Box>
-            </Box>
+            </Box> */}
 
             {/* Sub Navigation */}
             <Box sx={{ py: 1, borderTop: 1, borderColor: "divider" }}>
@@ -211,36 +178,47 @@ const SeattleTimesDemo = () => {
           <Grid container spacing={3} sx={{ mb: 8 }}>
             {games.map((game) => (
               <Grid item xs={12} sm={6} md={4} key={game.id}>
-                <Paper
-                  elevation={0}
+                <Box
+                  component="a"
+                  href={game.link}
                   sx={{
-                    border: 1,
-                    borderColor: "divider",
-                    transition: "box-shadow 0.3s",
-                    "&:hover": {
-                      boxShadow: 3,
-                    },
+                    textDecoration: "none",
+                    color: "inherit",
+                    display: "block",
                   }}
                 >
-                  <Box
-                    component="img"
-                    src={game.image}
-                    alt={game.title}
+                  <Paper
+                    elevation={0}
                     sx={{
-                      width: "100%",
-                      height: 240,
-                      objectFit: "cover",
+                      border: 1,
+                      borderColor: "divider",
+                      transition: "box-shadow 0.3s",
+                      "&:hover": {
+                        boxShadow: 3,
+                      },
+                      cursor: "pointer",
                     }}
-                  />
-                  <Box sx={{ p: 2 }}>
-                    <Typography variant="h6" gutterBottom>
-                      {game.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {game.description}
-                    </Typography>
-                  </Box>
-                </Paper>
+                  >
+                    <Box
+                      component="img"
+                      src={game.image}
+                      alt={game.title}
+                      sx={{
+                        width: "100%",
+                        height: 240,
+                        objectFit: "cover",
+                      }}
+                    />
+                    <Box sx={{ p: 2 }}>
+                      <Typography variant="h6" gutterBottom>
+                        {game.title}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {game.description}
+                      </Typography>
+                    </Box>
+                  </Paper>
+                </Box>
               </Grid>
             ))}
           </Grid>
@@ -309,6 +287,8 @@ const SeattleTimesDemo = () => {
             </Grid>
           </Container>
         </Box>
+
+        <DisclaimerBanner />
       </Box>
     </ThemeProvider>
   );

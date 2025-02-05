@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Blog from "./Blog";
 import SeattleTimesDemo from "./demos/seattle-times/SeattleTimesDemo";
+import SeattleTimesWordy from "./demos/seattle-times/SeattleTimesWordy";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,8 @@ const router = createBrowserRouter([
     element: <SeattleTimesDemo />
   },
   {
-    path: "/seattle-times/*",
-    element: <SeattleTimesDemo />
+    path: "/seattle-times/wordy",
+    element: <SeattleTimesWordy />
   }
 ]);
 
