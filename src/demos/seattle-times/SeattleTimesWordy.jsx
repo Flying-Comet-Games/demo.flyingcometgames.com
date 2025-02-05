@@ -92,7 +92,7 @@ const SeattleTimesWordy = () => {
         </AppBar>
 
         {/* Game Content */}
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 10 }}>
+        <Container maxWidth="lg" sx={{ mt: 4 }}>
           <Box sx={{ maxWidth: 600, mx: "auto" }}>
             <Typography variant="h4" component="h2" gutterBottom>
               The Daily Wordy
@@ -106,10 +106,9 @@ const SeattleTimesWordy = () => {
             <Box
               sx={{
                 width: "100%",
-                height: "700px",
+                height: "660px",
                 bgcolor: "background.paper",
                 overflow: "hidden",
-                mb: 4,
               }}
             >
               <Box
