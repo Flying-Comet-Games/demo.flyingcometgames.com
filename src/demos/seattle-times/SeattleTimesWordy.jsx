@@ -106,14 +106,14 @@ const SeattleTimesWordy = () => {
             <Box
               sx={{
                 width: "100%",
-                height: "660px",
+                height: "800px",
                 bgcolor: "background.paper",
                 overflow: "hidden",
               }}
             >
               <Box
                 component="iframe"
-                src="/seattle-times-wordy-embed.html"
+                src="https://flyingcometgames.com/seattle-times-demo"
                 sx={{
                   width: "100%",
                   height: "100%",
