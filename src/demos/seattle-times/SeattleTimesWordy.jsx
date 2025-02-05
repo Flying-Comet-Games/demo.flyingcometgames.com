@@ -92,15 +92,17 @@ const SeattleTimesWordy = () => {
         </AppBar>
 
         {/* Game Content */}
-        <Container maxWidth="lg" sx={{ mt: 4 }}>
+        <Container height="100%" maxWidth="lg" sx={{ mt: 2, px: 0 }}>
           <Box sx={{ maxWidth: 600, mx: "auto" }}>
-            <Typography variant="h4" component="h2" gutterBottom>
-              The Daily Wordy
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              Guess the 5 letter word of the day. To start, simply begin typing.
-              Click the 💡 for a hint.
-            </Typography>
+            {/* <Box sx={{px: 3}}>
+              <Typography variant="h4" component="h2" gutterBottom>
+                The Daily Wordy
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Guess the 5 letter word of the day. To start, simply begin typing.
+                Click the 💡 for a hint.
+              </Typography>
+            </Box> */}
 
             {/* Game iframe would go here */}
             <Box
