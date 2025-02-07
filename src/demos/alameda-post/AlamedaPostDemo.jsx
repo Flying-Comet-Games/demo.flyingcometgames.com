@@ -117,7 +117,7 @@ const AlamedaPostDemo = () => {
             <Box
               sx={{
                 width: "100%",
-                height: "800px",
+                height: "730px",
                 bgcolor: "background.paper",
                 overflow: "hidden",
               }}
