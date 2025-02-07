@@ -127,7 +127,7 @@ const SeattleTimesWordy = () => {
           </Box>
         </Container>
 
-        <DisclaimerBanner />
+        <DisclaimerBanner publication="The Seattle Times" />
       </Box>
     </ThemeProvider>
   );

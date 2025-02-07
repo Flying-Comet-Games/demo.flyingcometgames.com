@@ -5,11 +5,16 @@ import "./index.css";
 import Blog from "./Blog";
 import SeattleTimesDemo from "./demos/seattle-times/SeattleTimesDemo";
 import SeattleTimesWordy from "./demos/seattle-times/SeattleTimesWordy";
+import AlamedaPostDemo from "./demos/alameda-post/AlamedaPostDemo";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Blog />
+  },
+  {
+    path: "/alameda-post",
+    element: <AlamedaPostDemo />
   },
   {
     path: "/seattle-times",

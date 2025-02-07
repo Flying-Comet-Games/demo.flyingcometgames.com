@@ -288,7 +288,7 @@ const SeattleTimesDemo = () => {
           </Container>
         </Box>
 
-        <DisclaimerBanner />
+        <DisclaimerBanner publication="The Seattle Times" />
       </Box>
     </ThemeProvider>
   );

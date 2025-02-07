@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Container, Typography, Link, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function DisclaimerBanner() {
+export default function DisclaimerBanner({publication}) {
   const [visible, setVisible] = useState(true);
 
   if (!visible) return null;
@@ -24,7 +24,7 @@ export default function DisclaimerBanner() {
       <Container maxWidth="lg" sx={{ position: "relative" }}>
         <Typography variant="body1" sx={{ fontWeight: 600 }}>
           This is a demo site for showing game functionality. This is NOT
-          affiliated with The Seattle Times.
+          affiliated with {publication}
         </Typography>
         <Typography variant="body2">
           <Link
