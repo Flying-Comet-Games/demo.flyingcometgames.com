@@ -83,7 +83,7 @@ const alamedaPostTheme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: '#002855', // Matches header/nav color
+          backgroundColor: '#000000', // Matches header/nav color #002855
           color: '#FFFFFF', // White text for contrast
           boxShadow: 'none',
         },
