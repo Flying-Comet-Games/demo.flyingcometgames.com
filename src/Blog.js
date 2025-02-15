@@ -18,7 +18,7 @@ export default function Blog() {
           width="100%"
           maxWidth="lg"
           component="main"
-          sx={{ display: "flex", flexDirection: "column", mt: 5}}
+          sx={{ display: "flex", flexDirection: "column", mt: 5 }}
         >
           <MainContent />
         </Container>

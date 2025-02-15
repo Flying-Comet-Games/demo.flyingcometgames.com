@@ -44,17 +44,6 @@ const GameEmbed = () => {
           title="Seattle Wordy Game"
         />
       </StyledIframeContainer>
-      <CardContent>
-        <Typography gutterBottom variant="caption" component="div">
-          Game
-        </Typography>
-        <Typography gutterBottom variant="h6" component="div">
-          Play Seattle Wordy
-        </Typography>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          Test your knowledge of Seattle landmarks and culture with our daily word puzzle. Can you guess today's Seattle-themed word?
-        </Typography>
-      </CardContent>
     </StyledGameCard>
   );
 };
