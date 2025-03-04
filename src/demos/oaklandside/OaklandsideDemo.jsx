@@ -205,26 +205,27 @@ const OaklandsideDemo = () => {
           </Typography>
         </Box>
 
-        {/* Game Content - Red placeholder for game embed */}
-        <Container maxWidth="lg" sx={{ mt: 2, px: 2 }}>
-          <Box
-            sx={{
-              width: "100%",
-              height: "600px",
-              mb: 4,
-            }}
-          >
-            {/* Game embed will go here */}
+        <Container height="100%" maxWidth="lg" sx={{ mt: 2, px: 0 }}>
+          <Box sx={{ maxWidth: 600, mx: "auto" }}>
             <Box
-              component="iframe"
-              src="https://flyingcometgames.com/oaklandside-demo"
               sx={{
                 width: "100%",
-                height: "100%",
-                border: "none",
+                height: "750px",
+                bgcolor: "background.paper",
+                overflow: "hidden",
               }}
-              title="Oaklandside Game"
-            />
+            >
+              <Box
+                component="iframe"
+                src="https://flyingcometgames.com/oaklandside-demo"
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                }}
+                title="Oaklandside Wordy"
+              />
+            </Box>
           </Box>
         </Container>
 
