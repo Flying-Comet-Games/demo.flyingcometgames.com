@@ -6,24 +6,29 @@ import Blog from "./Blog";
 import SeattleTimesDemo from "./demos/seattle-times/SeattleTimesDemo";
 import SeattleTimesWordy from "./demos/seattle-times/SeattleTimesWordy";
 import AlamedaPostDemo from "./demos/alameda-post/AlamedaPostDemo";
+import OaklandsideDemo from "./demos/oaklandside/OaklandsideDemo";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Blog />
+    element: <Blog />,
   },
   {
     path: "/alameda-post",
-    element: <AlamedaPostDemo />
+    element: <AlamedaPostDemo />,
   },
   {
     path: "/seattle-times",
-    element: <SeattleTimesDemo />
+    element: <SeattleTimesDemo />,
   },
   {
     path: "/seattle-times/wordy",
-    element: <SeattleTimesWordy />
-  }
+    element: <SeattleTimesWordy />,
+  },
+  {
+    path: "/oaklandside",
+    element: <OaklandsideDemo />,
+  },
 ]);
 
 const container = document.getElementById("root");
