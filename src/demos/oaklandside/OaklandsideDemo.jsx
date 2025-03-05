@@ -204,7 +204,6 @@ const OaklandsideDemo = () => {
             OUSD board slashes hundreds of jobs | Culture Makers on March 13
           </Typography>
         </Box>
-
         <Container height="100%" maxWidth="lg" sx={{ mt: 2, px: 0 }}>
           <Box sx={{ maxWidth: 600, mx: "auto" }}>
             <Box
@@ -224,6 +223,9 @@ const OaklandsideDemo = () => {
                   border: "none",
                 }}
                 title="Oaklandside Wordy"
+                allow="clipboard-read; clipboard-write"
+                allowFullScreen={true}
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
               />
             </Box>
           </Box>
