@@ -312,7 +312,7 @@ const ColoradoSunDemo = () => {
             >
               <Box
                 component="iframe"
-                src="http://localhost:3000/colorado-sun"
+                src="https://flyingcometgames.com/colorado-sun"
                 sx={{
                   width: "100%",
                   height: "100%",
