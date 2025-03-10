@@ -306,7 +306,6 @@ const ColoradoSunDemo = () => {
               sx={{
                 width: "100%",
                 height: "780px",
-                bgcolor: "#D34B2D", // The red area where the game will be embedded
                 overflow: "hidden",
               }}
             >
