@@ -7,6 +7,7 @@ import SeattleTimesDemo from "./demos/seattle-times/SeattleTimesDemo";
 import SeattleTimesWordy from "./demos/seattle-times/SeattleTimesWordy";
 import AlamedaPostDemo from "./demos/alameda-post/AlamedaPostDemo";
 import OaklandsideDemo from "./demos/oaklandside/OaklandsideDemo";
+import ColoradoSunDemo from "./demos/colorado-sun/ColoradoSunDemo";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/oaklandside",
     element: <OaklandsideDemo />,
+  },
+  {
+    path: "/colorado-sun",
+    element: <ColoradoSunDemo />,
   },
 ]);
 
