@@ -209,7 +209,7 @@ const OaklandsideDemo = () => {
             <Box
               sx={{
                 width: "100%",
-                height: "750px",
+                height: "1000px",
                 bgcolor: "background.paper",
                 overflow: "hidden",
               }}
