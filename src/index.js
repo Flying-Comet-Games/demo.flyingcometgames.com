@@ -8,6 +8,7 @@ import SeattleTimesWordy from "./demos/seattle-times/SeattleTimesWordy";
 import AlamedaPostDemo from "./demos/alameda-post/AlamedaPostDemo";
 import OaklandsideDemo from "./demos/oaklandside/OaklandsideDemo";
 import ColoradoSunDemo from "./demos/colorado-sun/ColoradoSunDemo";
+import JocoDemo from "./demos/joco/JocoDemo";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/colorado-sun",
     element: <ColoradoSunDemo />,
+  },
+  {
+    path: "/joco",
+    element: <JocoDemo />,
   },
 ]);
 
