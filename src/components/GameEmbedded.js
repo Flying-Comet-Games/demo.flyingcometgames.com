@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -20,33 +20,49 @@ const StyledGameCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const StyledIframeContainer = styled(Box)(({ theme }) => ({
+const StyledGameContainer = styled(Box)(({ theme }) => ({
   position: "relative",
   width: "100%",
   borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
-  height: "720px", // default for md and above
   [theme.breakpoints.down("sm")]: {
-    height: "760px", // adjust height for small screens
+    height: "780px",
   },
 }));
 
 const GameEmbed = () => {
+  const scriptLoaded = useRef(false);
+
+  useEffect(() => {
+    // Only load the script once
+    if (scriptLoaded.current) return;
+
+    const script = document.createElement("script");
+    script.id = "fcg-embed";
+    script.src = "https://flyingcometgames.com/fcg/js/embed.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    scriptLoaded.current = true;
+
+    // Cleanup function to remove the script when component unmounts
+    return () => {
+      if (document.getElementById("fcg-embed")) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <StyledGameCard variant="outlined">
-      <StyledIframeContainer>
-        <iframe
-          src="https://flyingcometgames.com/fcg/wordy?id=jUwsvwnT8CJXRz9CkYoFJt"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "760px",
-            border: "none",
-          }}
-          title="Seattle Wordy Game"
+      <StyledGameContainer>
+        <div
+          className="fcg-game"
+          data-gameType="wordy"
+          data-publicationId="jUwsvwnT8CJXRz9CkYoFJt"
+          data-height="740px"
         />
-      </StyledIframeContainer>
+      </StyledGameContainer>
     </StyledGameCard>
   );
 };
